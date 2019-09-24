@@ -1,0 +1,5 @@
+if cat -blue then 
+mv -apple
+else
+pwd apple
+fi

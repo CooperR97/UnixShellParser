@@ -1,0 +1,4 @@
+for apples in fruit
+do
+mv apples to basket
+od
