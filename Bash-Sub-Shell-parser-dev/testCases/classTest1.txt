@@ -1,0 +1,4 @@
+touch mynewfile
+mv mynewfile newstuff
+cd newstuff
+chmod 557

@@ -1,5 +1,7 @@
 package bashShell;
 
+import java.util.regex.Pattern;
+
 public class Token {
     public byte kind;
     public String spelling;
@@ -21,6 +23,9 @@ public class Token {
     public final static byte CMD = 14;
     public final static byte ARG = 15;
 
+    private final String litString = "(-(-?)([a-z]|[0-9])*)|[0-9]*";
+    private final String varString = "[a-z]([a-z]|[0-9]|_|\\.)*";
+
     /**
      * Token Constructor
      * when a token is created, the kind of token is determined by checking the first character
@@ -34,13 +39,30 @@ public class Token {
     public Token(byte kind, String spelling){
         this.kind = kind;
         this.spelling = spelling;
-        //everything is a var or lit then checks on first letter in the word
         if(this.spelling.charAt(0) == "-".charAt(0)){
-            this.kind = LIT;
+            if(Pattern.matches(litString, this.spelling)) {
+                this.kind = LIT;
+            } else{
+                System.out.println("Syntax Error");
+            }
         } else if(Character.isDigit(this.spelling.charAt(0))){
-            this.kind = LIT;
-        } else{
-
+            if(Pattern.matches(litString, this.spelling)) {
+                this.kind = LIT;
+            }else{
+                System.out.println("Syntax Error");
+            }
+        } else if(Character.isLetter(this.spelling.charAt(0))){
+            //if it is determined that the token could be a var,
+            //it is also checked against the RE for a var
+            //also checks for the equals sign, as it is the only special char
+            if(Pattern.matches(varString, this.spelling)) {
+                this.kind = VAR;
+            }else if(this.spelling.equals("=")){
+                this.kind = ASSIGN;
+            }else{
+                System.out.println("Syntax Error");
+            }
+        }
             switch(this.spelling){
                 case("cat"):
                 case("ls"):
@@ -53,6 +75,9 @@ public class Token {
                 case("man"):
                 case("ps"):
                 case("bg"):
+                case("mkdir"):
+                case("cd"):
+                case("test"):
                 {
                     this.kind = FName;
                     break;
@@ -103,7 +128,6 @@ public class Token {
                     break;
                 }
             }
-        }
     }
 
     private final static String[] spellings = {
