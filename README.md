@@ -2,6 +2,8 @@
 
 <p>This program parses a file or statement according to the EBNF grammar given for Unix shell scripting subset.</p>
 
+<p>When running the program, either enter 'string' and then the string you wished to be parsed, or place your files you wished to be parsed in the testCases folder in the directory and run the program to enter the name of the file.</p>
+
 ### Grammar for a subset of the Unix shell scripting language
 ```
   Script  -> Command*
@@ -13,12 +15,12 @@
                 Command*
              fi eol
            | for Variable in Argument* eol
-                 do
+                 do eol
                    Command*
                  od eol
   Argument -> Filename | Literal | Variable
-  Filename -> cat | ls | pwd | touch | cp | mv |n rm | chmod | man | ps | bg
-  Variable -> Letter(Letter | Digit | _)*
+  Filename -> cat | ls | pwd | touch | cp | mv | rm | chmod | man | ps | bg | mkdir | test | cd
+  Variable -> Letter(Letter | Digit | _ | .)*
   Literal -> -(ε|-)(Letter | Digit)* | Digit*
 ``` 
 
