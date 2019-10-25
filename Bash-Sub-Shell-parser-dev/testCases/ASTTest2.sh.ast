@@ -1,0 +1,4 @@
+ Script
+   AssignCmd
+    VarArg file1
+    VarArg stuff1.txt

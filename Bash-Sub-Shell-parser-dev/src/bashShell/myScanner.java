@@ -11,7 +11,9 @@ public class myScanner {
 
     /**
      * Constructor for the lexical scanner
-     * creates a list of tokens adding appropriate 'eol' and 'eot' tokens
+     * Creates a list of tokens adding appropriate 'eol' and 'eot' tokens
+     * Separate while loops are used to check if the script has a next line
+     * Adds appropriate 'eol' or 'eot' tokens based on if the script has a next line
      * @param script string to be tokenized
      */
     public myScanner(String script) {
@@ -31,7 +33,11 @@ public class myScanner {
         nextToken = 0;
     }
 
-    //returns the next token
+    /**
+     * A Token is always instantiated as a variable with the appropriate spelling.
+     * Inside the Token constructor is where the Token kind is determined
+     * @return new Token that is the next Token in the string
+     */
     public Token nextTerminal () {
         if (nextToken < tokens.size()) {
             nextToken++;

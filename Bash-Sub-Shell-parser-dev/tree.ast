@@ -1,0 +1,31 @@
+ Script
+   SeqCmd
+    AssignCmd
+     VarArg file1
+     VarArg stuff1.txt
+    SeqCmd
+     AssignCmd
+      VarArg file2
+      VarArg stuff2.c
+     SeqCmd
+      AssignCmd
+       VarArg file3
+       VarArg stuff3.java
+      ForCmd
+       VarArg file
+       SeqArg
+        VarArg file1
+        SeqArg
+         VarArg file2
+         VarArg file3
+       IfCmd
+        FNameArg test
+        SeqArg
+         LiteralArg -e
+         VarArg file
+        ExecCmd
+         FNameArg cp
+         SeqArg
+          VarArg file
+          VarArg bck
+       nullCmd
