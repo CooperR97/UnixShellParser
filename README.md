@@ -4,6 +4,9 @@
 
 ## Instructions for parsing and creating an AST
 <p> When running the program in IntelliJ, change the program arguments in the 'Edit Configuration' window to include the flag 'd' for printing the AST to the console, or '-p' to write the AST to a '.ast' file in the root directory of the project. The '.ast' file will be named corresponding to what the filename was that was parsed.</p>
+<p align="center">
+  <img width="720" src=args.png>
+</p>
 
 ## Instructions for parsing (parsing only)
 <p>When running the program, either enter 'string' and then the string you wished to be parsed, or place your files you wished to be parsed in the testCases folder in the directory and run the program to enter the name of the file.</p>
