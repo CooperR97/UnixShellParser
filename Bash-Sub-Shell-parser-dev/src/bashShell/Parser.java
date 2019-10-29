@@ -244,7 +244,7 @@ public class Parser {
                 return a1;
 
             default:
-                System.err.println("error");
+                System.err.println("Token is not a SingleArg");
                 return null;
         }
     }
