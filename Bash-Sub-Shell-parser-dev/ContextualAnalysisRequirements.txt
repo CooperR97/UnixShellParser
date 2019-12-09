@@ -1,0 +1,16 @@
+For this assignment we want to implement contextual analysis for our Bash Subshell language.   We will use the following scope and typing rules.
+
+All variables, with the exceptions noted below, are global.
+Declaration of a variable occurs when it is used in an assignment.
+The use of a variable in a statement that has not been declared via an assignment statement, is an error.
+Naming a variable used in the declaration of a for loop (the for-variable), declares a new variable.  (Note: There is no assignment in this case.) The scope of the for-variable is the body of the for statement.
+The type of a variable is determined by assignment and may change from place to place in a script.
+Legal types for variables are: string, numeric, or executable.
+Elements of type executable must be in the set:  {cat, ls, pwd, touch, cp, mv, rm, chmod, man, ps, bg, mkdir, test, cd}
+The string type consists of  all possible sequences of ASCII characters with the exception of those strings that match an executable type member.
+Elements of numeric type are strings of digits representing an integer value.
+Boolean values:  The empty string, "", the value null, and the numeric value 0, (0.0) are false values, all other values are considered true.
+Create a context checker module for your compile which applies the scoping and typing rules above to the abstract syntax tree produced by your semantic analyzer.   The context checker should run as the second phase of the compile2C program.  It should consume the AST created by the semantic analyzer and produce a decorated AST.  Use the decoration approach described by the author.
+
+Commit your code to the master branch of your repository and place the url to the repository in the comment for this assignment.
+

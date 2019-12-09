@@ -6,6 +6,6 @@ package bashShell.ast;
  * restriction will be enforced by SingleArgs constructor.
  */
 // Abstract Single Argument
-public class SingleArg extends Argument {
+public abstract class SingleArg extends Argument {
 
 }

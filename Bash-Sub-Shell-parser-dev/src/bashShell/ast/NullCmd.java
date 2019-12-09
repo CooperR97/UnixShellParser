@@ -1,4 +1,5 @@
 package bashShell.ast;
+import bashShell.CA.*;
 
 // Null Command
 public class NullCmd extends Command{
@@ -13,5 +14,9 @@ public class NullCmd extends Command{
     public String visit(int i) {
         tree = tree + (Indent(i) + "nullCmd");
         return(Indent(i) + "nullCmd");
+    }
+
+    public Object accept(Checker check, Object var){
+        return(check.visitNullCmd(this, var));
     }
 }

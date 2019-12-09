@@ -1,5 +1,6 @@
 package bashShell.ast;
 
+import bashShell.CA.Checker;
 import bashShell.Parser;
 
 import java.io.File;
@@ -39,9 +40,14 @@ public class Compile2C {
         //create string from the file
         String content = new Scanner(new File(filePath)).useDelimiter("\\Z").next();
         //create parser from the string
+
         Parser scriptParse = new Parser(content);
         //create the string that represents the AST
         tree = scriptParse.parse();
+        //create the script object to be context checked
+        Parser scriptCheck = new Parser(content);
+        Script script = scriptCheck.parseScript();
+        scriptParse.checkAST(script);
 
         if(writeToConsole)
             System.out.println(tree);

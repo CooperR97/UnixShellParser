@@ -1,5 +1,7 @@
 package bashShell.ast;
 
+import bashShell.CA.Checker;
+
 // If Command
 public class IfCmd extends Command{
     private FNameArg command;
@@ -15,6 +17,22 @@ public class IfCmd extends Command{
         this.elseBlock = elseBlock;
     }
 
+    public FNameArg getCommand() {
+        return command;
+    }
+
+    public Argument getArgs() {
+        return args;
+    }
+
+    public Command getElseBlock() {
+        return elseBlock;
+    }
+
+    public Command getThenBlock() {
+        return thenBlock;
+    }
+
     // Used to write node to a file or console
     public String visit(int i){
         i++;
@@ -23,5 +41,9 @@ public class IfCmd extends Command{
         tree = tree + thenBlock.visit(i);
         tree = tree + elseBlock.visit(i);
         return(Indent(i) + "IfCmd\n" + tree);
+    }
+
+    public Object accept(Checker check, Object o){
+        return(check.visitIfCmd(this, o));
     }
 }

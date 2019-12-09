@@ -1,4 +1,5 @@
 package bashShell;
+import bashShell.CA.Checker;
 import bashShell.ast.*;
 
 import java.io.File;
@@ -60,6 +61,14 @@ public class Parser {
         errorHappened = false;
     }
 
+    public void checkAST(Script s1){
+        Checker check = new Checker();
+        check.visitScript(s1, null);
+        if(!check.err){
+            System.out.println("Program passes contextual analysis.");
+        }
+    }
+
     //---------------- Parsing Methods ---------------
 
     /**
@@ -67,7 +76,7 @@ public class Parser {
      * It then calls parseCommand(); to be further parsed
      * @return Script object
      */
-    private Script parseScript() {
+    public Script parseScript() {
         Script s1;
         s1 = new Script(parseCommand());
         return s1;
@@ -133,7 +142,7 @@ public class Parser {
                     Command c2;
                     c2 = parseCommand();
                     SeqCmd s2;
-                    s2 = new SeqCmd(c3, c2);
+                    s2 = new SeqCmd(c2, c3);
                     return s2;
                 }
                 c1AST = new IfCmd(f1, a1, c1, c3);
